@@ -179,6 +179,9 @@ export default function App() {
                   </div>
                 )}
 
+                {/* Input caché pour le PDF généré */}
+                <input type="file" id="pdf-attachment" name="pdf_attachment" style={{ display: 'none' }} />
+
                 <button type="submit" className="btn primary w-100">Soumettre ma candidature</button>
               </form>
             </div>
@@ -215,7 +218,15 @@ export default function App() {
             <h2 className="section-title">✅ Candidature soumise</h2>
             <div className="success-content">
               <p>Merci pour ta candidature ! Elle a été reçue et sera examinée dans les plus brefs délais.</p>
-              <p>Un message t'attendra dès que ta demande sera traitée.</p>
+              <p>Rejoins maintenant le groupe WhatsApp du clan pour rester informé :</p>
+              <a
+                href="https://chat.whatsapp.com/JDOeeA4Hxhw8Xj2HBjtuhA?mode=gi_t"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn primary whatsapp-btn mt-3"
+              >
+                <i className="fab fa-whatsapp"></i>&nbsp; Appuyez ici pour continuer
+              </a>
             </div>
           </div>
         </section>
