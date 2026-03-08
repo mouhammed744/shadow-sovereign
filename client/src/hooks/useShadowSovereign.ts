@@ -115,13 +115,32 @@ function buildEmailHtml(params: {
 </div>`;
 }
 
-/* ─── Lecture image en base64 ───────────────────────────────────────────── */
-function readFileAsBase64(file: File): Promise<string> {
+/* ─── Resize + compression image avant base64 (évite la limite EmailJS) ── */
+function resizeImageToBase64(file: File, maxWidth = 550, quality = 0.55): Promise<string> {
   return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result as string);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
+    const img = new Image();
+    const objectUrl = URL.createObjectURL(file);
+
+    img.onload = () => {
+      let { width, height } = img;
+      if (width > maxWidth) {
+        height = Math.round((height * maxWidth) / width);
+        width = maxWidth;
+      }
+
+      const canvas = document.createElement('canvas');
+      canvas.width = width;
+      canvas.height = height;
+      const ctx = canvas.getContext('2d');
+      if (!ctx) { reject(new Error('Canvas non disponible')); return; }
+      ctx.drawImage(img, 0, 0, width, height);
+
+      URL.revokeObjectURL(objectUrl);
+      resolve(canvas.toDataURL('image/jpeg', quality));
+    };
+
+    img.onerror = () => { URL.revokeObjectURL(objectUrl); reject(new Error('Lecture image échouée')); };
+    img.src = objectUrl;
   });
 }
 
@@ -217,7 +236,7 @@ export function useShadowSovereign() {
       const profilePic = formData.get('profile_pic') as File;
       let profilePicHtml = '<em style="color:#aaa;">Aucune capture fournie</em>';
       if (profilePic && profilePic.size > 0) {
-        const base64 = await readFileAsBase64(profilePic);
+        const base64 = await resizeImageToBase64(profilePic);
         profilePicHtml = `<img src="${base64}" alt="Profil de ${pseudo}" style="max-width:480px;display:block;" />`;
       }
 
