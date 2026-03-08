@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadow Sovereign | Clan Call of Duty Mobile</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="shadow.jpg" alt="Logo Shadow Sovereign" id="clan-logo">
+                <span>SHADOW SOVEREIGN</span>
+            </div>
+            <ul class="nav-links" role="navigation">
+                <li><a href="#" data-target="home" class="active">Accueil</a></li>
+                <li><a href="#" data-target="about">À propos</a></li>
+                <li><a href="#" data-target="join" class="btn-nav">Rejoindre le clan</a></li>
+            </ul>
+            <div class="burger-menu" aria-label="Menu de navigation" role="button" tabindex="0">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- --- Accueil --- -->
+        <section id="home" class="page active">
+            <div class="hero-overlay"></div>
+            <div class="hero-content">
+                <img src="shadow.jpg" alt="Logo Shadow Sovereign" class="hero-logo animate-float">
+                <h1 class="glitch" data-text="Shadow Sovereign">Shadow Sovereign</h1>
+                <h2>Dominez depuis les Ombres</h2>
+                <p>Un clan compétitif de Call of Duty Mobile regroupant des joueurs actifs, stratégiques et passionnés.</p>
+                <div class="hero-buttons">
+                        <button class="btn primary nav-trigger" data-target="rules-page">Rejoindre le clan</button>
+                    <button class="btn secondary nav-trigger" data-target="about">À propos</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- À propos --- -->
+        <section id="about" class="page">
+            <div class="container">
+                <h2 class="section-title">Qui sommes-nous ?</h2>
+                <div class="about-grid">
+                    <div class="about-text slide-in-left">
+                        <p>Nés dans l'ombre, forgés par la compétition. Shadow Sovereign est une fraternité d'élite sur Call of Duty Mobile.</p>
+                        
+                        <h3>Notre Mission</h3>
+                        <ul class="mission-list">
+                            <li><i class="fas fa-crosshairs"></i> Construire une communauté forte</li>
+                            <li><i class="fas fa-shield-alt"></i> Participer et dominer les guerres de clan</li>
+                            <li><i class="fas fa-level-up-alt"></i> Progresser ensemble</li>
+                        </ul>
+
+                        <!-- Lien vers le règlement -->
+                        <p>Pour rejoindre le clan, il est obligatoire de respecter nos règles. 
+                            <a href="#" class="nav-trigger" data-target="rules-page">Lire le règlement</a>
+                        </p>
+                    </div>
+                    <div class="about-image slide-in-right">
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Esport Gaming">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Rejoindre le clan --- -->
+        <section id="join" class="page">
+            <div class="container">
+                <h2 class="section-title">Recrutement Shadow Sovereign</h2>
+                <div class="form-container">
+                    <p class="form-intro">Prouve que tu es digne d'entrer dans l'ombre.</p>
+                    
+                    <form id="recruitment-form" enctype="multipart/form-data" novalidate>
+                        <div class="input-group">
+                            <label for="pseudo">Pseudo en jeu (IGN)</label>
+                            <input type="text" id="pseudo" name="pseudo" placeholder="Ex: 2S • Ghost" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="player_type">Type de joueur</label>
+                            <select id="player_type" name="player_type" required>
+                                <option value="">-- Choisir --</option>
+                                <option value="BR">BR (Battle Royale)</option>
+                                <option value="MJ">MJ (Multijoueur)</option>
+                                <option value="Polyvalent">Polyvalent (BR & MJ)</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="profile_pic">Capture d'écran de ton profil (Preuve de niveau)</label>
+                            <input type="file" id="profile_pic" name="profile_pic" accept="image/*" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="experience">As-tu déjà été dans un clan ? Si oui, lequel ?</label>
+                            <textarea id="experience" name="experience" placeholder="Tes anciens clans, tes motivations..."></textarea>
+                        </div>
+
+                        <div class="question-block">
+                            <p>1. Joues-tu régulièrement à Call of Duty Mobile ?</p>
+                            <div class="radio-group">
+                                <label><input type="radio" name="q1" value="oui" required> Oui</label>
+                                <label><input type="radio" name="q1" value="non"> Non</label>
+                            </div>
+                        </div>
+
+                        <div class="question-block">
+                            <p>2. Te conformeras-tu aux règles du clan ?</p>
+                            <div class="radio-group">
+                                <label><input type="radio" name="q2" value="oui" required> Oui</label>
+                                <label><input type="radio" name="q2" value="non"> Non</label>
+                            </div>
+                        </div>
+
+                        <div class="question-block highlight-q">
+                            <p>3. Es-tu actif pour les événements du clan ? (OBLIGATOIRE)</p>
+                            <div class="radio-group">
+                                <label><input type="radio" name="q3" value="oui" required> Oui</label>
+                                <label><input type="radio" name="q3" value="non"> Non</label>
+                            </div>
+                        </div>
+
+                        <div class="question-block">
+                            <p>4. Acceptes-tu les règles du clan Shadow Sovereign ?</p>
+                            <div class="radio-group">
+                                <label><input type="radio" name="q4" value="oui" required> Oui</label>
+                                <label><input type="radio" name="q4" value="non"> Non</label>
+                            </div>
+                        </div>
+
+                        <div class="question-block">
+                            <p>5. Es-tu prêt à représenter le clan avec honneur ?</p>
+                            <div class="radio-group">
+                                <label><input type="radio" name="q5" value="oui" required> Oui</label>
+                                <label><input type="radio" name="q5" value="non"> Non</label>
+                            </div>
+                        </div>
+
+                        <div id="error-message" class="error-msg hidden" role="alert"></div>
+
+                        <button type="submit" class="btn primary w-100">Soumettre ma candidature</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Règlement --- -->
+        <section id="rules-page" class="page">
+            <div class="container">
+                <h2 class="section-title">📢 RÈGLES DU CLAN 2S •</h2>
+                <div class="rules-container slide-in-bottom">
+                    <ol class="rules-list">
+                        <li><strong>Pseudo obligatoire :</strong> Tous les membres doivent afficher le symbole <strong>2S •</strong> dans leur pseudo.</li>
+                        <li><strong>Présence active :</strong> Chaque membre doit être actif au minimum 3 fois par semaine.</li>
+                        <li><strong>Entraînements :</strong> Participation obligatoire. Toute absence non justifiée sera signalée.</li>
+                        <li><strong>Classement :</strong> Les joueurs inactifs seront retirés pour laisser la place aux motivés.</li>
+                        <li><strong>Guerre de clan :</strong> Obligatoire pour tous afin d'atteindre la 1ère place.</li>
+                        <li><strong>Spécialisation :</strong> Présence requise lors des entraînements de votre mode (BR ou MJ).</li>
+                        <li><strong>Absences :</strong> En cas d'empêchement, <strong>prévenir un administrateur en inbox</strong> au moins 3h avant.</li>
+                        <li><strong>Confidentialité :</strong> Ce qui se passe à Shipment reste à Shipment (pas de screenshots 1vs1 sans accord).</li>
+                    </ol>
+                    <div class="rules-footer">
+                        <p><em>Note : De nouvelles règles peuvent être ajoutées ou retirées par le staff.</em></p>
+                        <p><strong>2S • Family — On avance ensemble.</strong></p>
+                        <button class="btn primary mt-3" id="accept-rules-btn">J'ai lu et j'accepte le règlement</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Succès --- -->
+        <section id="success" class="page">
+            <div class="container">
+                <h2 class="section-title">✅ Candidature soumise</h2>
+                <div class="success-content">
+                    <p>Merci pour ta candidature ! Elle a été reçue et sera examinée dans les plus brefs délais.</p>
+                    <p>Un message t'attendra dès que ta demande sera traitée.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <h3>Shadow Sovereign Clan</h3>
+            <p>Call of Duty Mobile</p>
+            <div class="socials">
+                <a href="https://wa.me/NUMERO" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fab fa-discord"></i></a>
+            </div>
+            <p class="copyright">© 2026 Shadow Sovereign Clan. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        emailjs.init("2c4foe1kPxi-A4hAQ");
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
