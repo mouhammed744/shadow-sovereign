@@ -232,17 +232,26 @@ export function useShadowSovereign() {
       const q5 = (formData.get('q5') as string) || '—';
       const time = new Date().toLocaleString('fr-FR');
 
-      // 1. Convertir la capture en base64
+      // 1. S'assurer qu'EmailJS est bien initialisé (fix mobile)
+      // @ts-ignore
+      if (typeof emailjs !== 'undefined') {
+        // @ts-ignore
+        emailjs.init('2c4foe1kPxi-A4hAQ');
+      } else {
+        throw new Error('EmailJS non chargé. Vérifie ta connexion et réessaie.');
+      }
+
+      // 2. Convertir la capture en base64 (redimensionnée pour mobile)
       const profilePic = formData.get('profile_pic') as File;
       let profilePicHtml = '<em style="color:#aaa;">Aucune capture fournie</em>';
       if (profilePic && profilePic.size > 0) {
-        const base64 = await resizeImageToBase64(profilePic);
-        profilePicHtml = `<img src="${base64}" alt="Profil de ${pseudo}" style="max-width:480px;display:block;" />`;
+        try {
+          const base64 = await resizeImageToBase64(profilePic, 480, 0.5);
+          profilePicHtml = `<img src="${base64}" alt="Profil de ${pseudo}" style="max-width:480px;display:block;" />`;
+        } catch {
+          profilePicHtml = '<em style="color:#aaa;">Capture non lisible</em>';
+        }
       }
-
-      // 2. Générer le PDF et le télécharger automatiquement
-      const pdfFile = generateCandidaturePDF(formData);
-      downloadFile(pdfFile);
 
       // 3. Construire le HTML de l'email et envoyer
       const message_html = buildEmailHtml({
@@ -254,15 +263,24 @@ export function useShadowSovereign() {
       await emailjs.send('service_uam8eqa', 'template_c5enofb', {
         player_name:  pseudo,
         time,
-        message_html,   // ← tout le HTML de l'email ici
+        message_html,
       });
+
+      // 4. Télécharger le PDF (optionnel — ne bloque pas l'envoi)
+      try {
+        const pdfFile = generateCandidaturePDF(formData);
+        downloadFile(pdfFile);
+      } catch {
+        // Le téléchargement PDF peut échouer sur mobile : ce n'est pas bloquant
+      }
 
       console.log('✅ Candidature envoyée avec succès !');
       form.reset();
       setCurrentPage('success');
-    } catch (error) {
+    } catch (error: any) {
       console.error("❌ Erreur lors de l'envoi :", error);
-      setErrors(["Erreur lors de l'envoi de la candidature. Veuillez réessayer."]);
+      const msg = error?.text || error?.message || JSON.stringify(error);
+      setErrors([`Erreur lors de l'envoi : ${msg}`]);
     }
   }, [validateForm]);
 

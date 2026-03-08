@@ -179,9 +179,6 @@ export default function App() {
                   </div>
                 )}
 
-                {/* Input caché pour le PDF généré */}
-                <input type="file" id="pdf-attachment" name="pdf_attachment" style={{ display: 'none' }} />
-
                 <button type="submit" className="btn primary w-100">Soumettre ma candidature</button>
               </form>
             </div>
